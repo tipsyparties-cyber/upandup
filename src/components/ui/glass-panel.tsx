@@ -1,0 +1,12 @@
+interface GlassPanelProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function GlassPanel({ children, className = "" }: GlassPanelProps) {
+  return (
+    <div className={`glass rounded-2xl p-6 ${className}`}>
+      {children}
+    </div>
+  );
+}
