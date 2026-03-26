@@ -17,7 +17,7 @@ export function ProjectCard({ title, industry, description, features, accentColo
         <div className={`h-2 w-full ${accentColor}`} />
         <div className="p-8">
           <p className="font-sans text-xs font-medium uppercase tracking-widest text-mid-grey">{industry}</p>
-          <h3 className="mt-2 font-serif text-2xl font-light">{title}</h3>
+          <h3 className="mt-2 font-display text-2xl font-light">{title}</h3>
           <p className="mt-4 text-sm text-mid-grey leading-relaxed">{description}</p>
           <ul className="mt-6 space-y-2">
             {features.map((f) => (

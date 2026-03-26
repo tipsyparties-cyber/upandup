@@ -14,7 +14,7 @@ export function ArticleCard({ slug, title, description, date, readTime }: Articl
     <Link href={`/blog/${slug}`}>
       <NeoCard className="h-full">
         <p className="font-sans text-xs text-mid-grey">{date} &middot; {readTime}</p>
-        <h3 className="mt-3 font-serif text-xl font-light leading-snug">{title}</h3>
+        <h3 className="mt-3 font-display text-xl font-light leading-snug">{title}</h3>
         <p className="mt-3 text-sm text-mid-grey leading-relaxed">{description}</p>
         <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
           Read article

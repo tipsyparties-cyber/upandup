@@ -40,7 +40,7 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-[1280px]">
           <SectionReveal>
             <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">Our work</p>
-            <h1 className="mt-4 font-serif text-5xl font-light md:text-6xl lg:text-7xl">Projects</h1>
+            <h1 className="mt-4 font-display text-5xl font-light md:text-6xl lg:text-7xl">Projects</h1>
             <p className="mt-6 max-w-2xl text-mid-grey leading-relaxed">
               Every project is different because every business is different. Here&apos;s a look at how we&apos;ve helped real businesses transform their operations.
             </p>
@@ -50,11 +50,11 @@ export default function ProjectsPage() {
             <Link href="/projects/tipsy-parties" className="mt-16 block">
               <NeoCard className="overflow-hidden md:flex">
                 <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-peach/30 to-coral/20 md:aspect-auto md:w-2/5">
-                  <p className="font-serif text-7xl font-light text-warm-grey/20">TP</p>
+                  <p className="font-display text-7xl font-light text-warm-grey/20">TP</p>
                 </div>
                 <div className="p-8 md:w-3/5 md:p-10">
                   <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">Featured Case Study</p>
-                  <h2 className="mt-2 font-serif text-3xl font-light md:text-4xl">Tipsy Parties</h2>
+                  <h2 className="mt-2 font-display text-3xl font-light md:text-4xl">Tipsy Parties</h2>
                   <p className="mt-4 text-mid-grey leading-relaxed">
                     A fully autonomous cocktail events operation — from instant quoting to staff allocation, inventory management, AI customer service, and automated recruitment. The entire business runs itself.
                   </p>

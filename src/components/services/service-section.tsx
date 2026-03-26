@@ -12,7 +12,7 @@ export function ServiceSection({ title, description, features, index }: ServiceS
   return (
     <SectionReveal delay={index * 0.05}>
       <NeoCard className="p-8 md:p-10">
-        <h3 className="font-serif text-2xl font-light md:text-3xl">{title}</h3>
+        <h3 className="font-display text-2xl font-light md:text-3xl">{title}</h3>
         <p className="mt-4 text-mid-grey leading-relaxed">{description}</p>
         <ul className="mt-6 grid gap-2 sm:grid-cols-2">
           {features.map((feature) => (

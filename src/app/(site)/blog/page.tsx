@@ -14,7 +14,7 @@ export default function BlogPage() {
         <div className="mx-auto max-w-[1280px]">
           <SectionReveal>
             <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">Insights</p>
-            <h1 className="mt-4 font-serif text-5xl font-light md:text-6xl lg:text-7xl">Blog</h1>
+            <h1 className="mt-4 font-display text-5xl font-light md:text-6xl lg:text-7xl">Blog</h1>
           </SectionReveal>
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

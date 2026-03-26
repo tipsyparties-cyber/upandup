@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { serif, sans } from "@/lib/fonts";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { GsapProvider } from "@/lib/gsap-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -42,10 +40,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
+        <div className="bg-blobs" aria-hidden="true">
+          <div className="blob blob-1" />
+          <div className="blob blob-2" />
+          <div className="blob blob-3" />
+          <div className="blob blob-4" />
+          <div className="blob blob-5" />
+        </div>
         <GsapProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          {children}
         </GsapProvider>
         <Analytics />
         <SpeedInsights />

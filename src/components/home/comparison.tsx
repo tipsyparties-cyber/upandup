@@ -37,7 +37,7 @@ export function Comparison() {
     <section className="py-32 px-6">
       <div className="mx-auto max-w-[1280px]">
         <SectionReveal>
-          <h2 className="text-center font-serif text-4xl font-light md:text-5xl">
+          <h2 className="text-center font-display text-4xl font-light md:text-5xl">
             &ldquo;Same business. Completely different operation.&rdquo;
           </h2>
         </SectionReveal>

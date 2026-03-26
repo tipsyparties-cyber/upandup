@@ -36,9 +36,9 @@ export function Button({
     "inline-flex items-center gap-2 rounded-full px-8 py-4 font-sans text-sm font-medium tracking-wide uppercase transition-all duration-300";
   const variants = {
     primary:
-      "bg-accent text-white hover:bg-accent-hover shadow-neo hover:shadow-neo-hover",
+      "glass text-white hover:bg-white/20",
     outline:
-      "border-2 border-warm-grey text-warm-grey hover:bg-warm-grey hover:text-cream",
+      "glass text-white hover:bg-white/20",
   };
 
   const styles = `${baseStyles} ${variants[variant]} ${className}`;

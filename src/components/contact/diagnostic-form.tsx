@@ -14,7 +14,7 @@ export function DiagnosticForm() {
   if (state.success) {
     return (
       <div className="rounded-2xl bg-accent/5 p-8 text-center">
-        <h3 className="font-serif text-2xl font-light">Thanks for reaching out</h3>
+        <h3 className="font-display text-2xl font-light">Thanks for reaching out</h3>
         <p className="mt-4 text-mid-grey">
           We&apos;ve received your details and will be in touch shortly to discuss what&apos;s possible for your business.
         </p>

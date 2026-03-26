@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="pt-32 pb-20">
       <div className="prose-upup mx-auto max-w-3xl px-6">
-        <h1 className="font-serif text-4xl font-light md:text-5xl">Privacy Policy</h1>
+        <h1 className="font-display text-4xl font-light md:text-5xl">Privacy Policy</h1>
         <p className="mt-4 text-sm text-mid-grey">Last updated: March 2026</p>
         <h2>What we collect</h2>
         <p>When you submit our contact form, we collect your name, email address, phone number (if provided), and the information you share about your business. We use this solely to respond to your enquiry.</p>

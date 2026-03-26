@@ -4,7 +4,7 @@ import { SectionReveal } from "@/components/ui/section-reveal";
 
 export function ProjectTeaser() {
   return (
-    <section className="py-32 px-6 gradient-section">
+    <section className="py-32 px-6">
       <div className="mx-auto max-w-[1280px]">
         <SectionReveal>
           <div className="grid items-center gap-12 md:grid-cols-2">
@@ -12,7 +12,7 @@ export function ProjectTeaser() {
               <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">
                 Featured Project
               </p>
-              <h2 className="mt-4 font-serif text-4xl font-light md:text-5xl">
+              <h2 className="mt-4 font-display text-4xl font-light md:text-5xl">
                 Tipsy Parties
               </h2>
               <p className="mt-6 text-mid-grey leading-relaxed">
@@ -33,7 +33,7 @@ export function ProjectTeaser() {
             </div>
 
             <NeoCard className="aspect-[4/3] flex items-center justify-center bg-gradient-to-br from-peach/30 to-coral/20">
-              <p className="font-serif text-6xl font-light text-warm-grey/20">TP</p>
+              <p className="font-display text-6xl font-light text-warm-grey/20">TP</p>
             </NeoCard>
           </div>
         </SectionReveal>

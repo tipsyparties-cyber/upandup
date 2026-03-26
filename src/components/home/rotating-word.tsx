@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const words = ["faster", "stronger", "simpler", "smarter", "scalable", "unstoppable"];
+const words = ["faster", "stronger", "simpler", "smarter", "scalable", "easier"];
 
 export function RotatingWord() {
   const [index, setIndex] = useState(0);
@@ -16,19 +16,18 @@ export function RotatingWord() {
   }, []);
 
   return (
-    <span className="relative inline-block h-[1.2em] w-full overflow-hidden align-bottom">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={words[index]}
-          className="absolute left-0 text-accent"
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-100%", opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          {words[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={words[index]}
+        className="text-white"
+        initial={{ y: "0.5em", opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: "-0.5em", opacity: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ display: "inline-block" }}
+      >
+        {words[index]}
+      </motion.span>
+    </AnimatePresence>
   );
 }

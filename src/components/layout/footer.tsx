@@ -20,8 +20,9 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <Link href="/" className="text-2xl tracking-tight">
-              <span className="font-serif font-light">up</span>
-              <span className="font-sans font-medium">+up</span>
+              <span className="font-body font-light">up</span>
+              <span className="font-display text-[1.15em]">+up</span>
+              <span className="text-accent text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-mid-grey leading-relaxed">
               Smart people. Smarter systems. We design and build AI &amp; automation

@@ -14,7 +14,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-2xl">
           <SectionReveal>
             <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">Get started</p>
-            <h1 className="mt-4 font-serif text-5xl font-light md:text-6xl">Let&apos;s talk</h1>
+            <h1 className="mt-4 font-display text-5xl font-light md:text-6xl">Let&apos;s talk</h1>
             <p className="mt-6 text-mid-grey leading-relaxed">
               Tell us about your business, your biggest pain points, and where you want to be. We&apos;ll come back with honest advice on what&apos;s possible — and what isn&apos;t.
             </p>

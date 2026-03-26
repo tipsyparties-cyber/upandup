@@ -41,7 +41,7 @@ export function MobileMenu({ isOpen, onClose, links }: MobileMenuProps) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="font-serif text-3xl font-light text-warm-grey"
+                  className="font-display text-3xl font-light text-warm-grey"
                 >
                   {link.label}
                 </Link>

@@ -6,7 +6,7 @@ export function HomeCta() {
     <section className="py-32 px-6">
       <SectionReveal>
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-4xl font-light md:text-5xl text-balance">
+          <h2 className="font-display text-4xl font-light md:text-5xl text-balance">
             Ready to see what&apos;s possible?
           </h2>
           <p className="mt-6 text-mid-grey leading-relaxed">

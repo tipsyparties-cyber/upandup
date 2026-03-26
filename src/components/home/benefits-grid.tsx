@@ -3,10 +3,10 @@ import { glyphs } from "@/components/glyphs";
 
 export function BenefitsGrid() {
   return (
-    <section className="py-32 px-6 gradient-section">
+    <section className="py-32 px-6">
       <div className="mx-auto max-w-[1280px]">
         <SectionReveal>
-          <h2 className="text-center font-serif text-4xl font-light md:text-5xl lg:text-6xl">
+          <h2 className="text-center font-display text-4xl font-light md:text-5xl lg:text-6xl">
             What we{" "}
             <span className="hand-drawn-circle">achieve</span>{" "}
             with AI &amp; automation
@@ -18,7 +18,7 @@ export function BenefitsGrid() {
             <SectionReveal key={title} delay={i * 0.08}>
               <div className="text-center md:text-left">
                 <Glyph className="mx-auto mb-4 h-12 w-12 text-warm-grey/60 md:mx-0" />
-                <h3 className="font-serif text-2xl font-light">{title}</h3>
+                <h3 className="font-display text-2xl font-light">{title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-mid-grey">
                   {description}
                 </p>

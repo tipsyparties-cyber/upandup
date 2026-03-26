@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl">
           <SectionReveal>
             <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">About us</p>
-            <h1 className="mt-4 font-serif text-5xl font-light md:text-6xl lg:text-7xl">
+            <h1 className="mt-4 font-display text-5xl font-light md:text-6xl lg:text-7xl">
               Smart people. Smarter systems.
             </h1>
           </SectionReveal>
@@ -35,7 +35,7 @@ export default function AboutPage() {
 
           <SectionReveal delay={0.2}>
             <div className="mt-20">
-              <h2 className="font-serif text-3xl font-light md:text-4xl">What we believe</h2>
+              <h2 className="font-display text-3xl font-light md:text-4xl">What we believe</h2>
               <div className="mt-8 space-y-8 text-mid-grey leading-relaxed">
                 <p>
                   <strong className="text-warm-grey">Automation should fit the business, not the other way around.</strong>{" "}

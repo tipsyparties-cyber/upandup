@@ -14,7 +14,7 @@ export function ScrollChevron() {
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        className="text-warm-grey/50"
+        className="text-white/50"
       >
         <path
           d="M6 9L12 15L18 9"

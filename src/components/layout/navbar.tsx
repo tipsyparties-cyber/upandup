@@ -35,9 +35,10 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-          <Link href="/" className="text-2xl tracking-tight">
-            <span className="font-serif font-light">up</span>
-            <span className="font-sans font-medium">+up</span>
+          <Link href="/" className="text-2xl tracking-tight text-white invisible" id="navbar-logo">
+            <span className="font-body font-light">up</span>
+            <span className="font-display text-[1.15em]">+up</span>
+            <span className="text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
           </Link>
 
           <ul className="hidden items-center gap-8 md:flex">
@@ -45,7 +46,7 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm font-sans text-warm-grey/70 transition-colors duration-300 hover:text-warm-grey"
+                  className="text-sm font-sans text-white/70 transition-colors duration-300 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -58,8 +59,8 @@ export function Navbar() {
             className="flex flex-col gap-1.5 md:hidden"
             aria-label="Open menu"
           >
-            <span className="block h-px w-6 bg-warm-grey" />
-            <span className="block h-px w-6 bg-warm-grey" />
+            <span className="block h-px w-6 bg-white" />
+            <span className="block h-px w-6 bg-white" />
           </button>
         </nav>
       </motion.header>

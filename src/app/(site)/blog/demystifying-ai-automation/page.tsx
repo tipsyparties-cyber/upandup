@@ -12,7 +12,7 @@ export default function ArticlePage() {
       <header className="px-6">
         <div className="mx-auto max-w-3xl">
           <Link href="/blog" className="font-sans text-xs text-accent hover:text-accent-hover">&larr; Back to blog</Link>
-          <h1 className="mt-6 font-serif text-4xl font-light leading-tight md:text-5xl text-balance">
+          <h1 className="mt-6 font-display text-4xl font-light leading-tight md:text-5xl text-balance">
             Demystifying AI Automation: How It&apos;s Revolutionising Industries and What It Actually Means for Your Business
           </h1>
           <p className="mt-4 text-sm text-mid-grey">March 2026 &middot; 15 min read</p>
