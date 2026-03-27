@@ -23,14 +23,29 @@ function clusterPts(cx: number, cy: number, s: number) {
 
 function questionPts(cx: number, cy: number, s: number) {
   const p: {x:number;y:number}[] = [];
-  for (let t = 0; t <= 1; t += 0.004) {
-    const a = Math.PI * 1.1 - t * Math.PI * 1.6, r = s * 0.28;
-    p.push({ x: cx + Math.cos(a) * r, y: cy - s * 0.18 + Math.sin(a) * r * 0.85 });
+  const r = s * 0.13;
+  // Top curve — thick C shape curving from left over top and down right side
+  for (let pass = 0; pass < 8; pass++) {
+    const thickness = pass * 1.5;
+    for (let t = 0; t <= 1; t += 0.003) {
+      const angle = Math.PI * 0.8 - t * Math.PI * 1.8;
+      const tr = r + (Math.random() - 0.5) * thickness;
+      const x = cx + Math.cos(angle) * tr;
+      const y = cy - s * 0.1 + Math.sin(angle) * tr * 0.9;
+      p.push({ x, y });
+    }
   }
-  for (let t = 0; t <= 1; t += 0.01) p.push({ x: cx, y: cy + s * 0.05 + t * s * 0.14 });
-  for (let t = 0; t < 20; t++) {
-    const a = (t / 20) * Math.PI * 2;
-    p.push({ x: cx + Math.cos(a) * s * 0.025, y: cy + s * 0.3 + Math.sin(a) * s * 0.025 });
+  // Stem — thick vertical line
+  for (let pass = 0; pass < 6; pass++) {
+    for (let t = 0; t <= 1; t += 0.005) {
+      p.push({ x: cx + (Math.random() - 0.5) * pass * 1.2, y: cy + s * 0.04 + t * s * 0.08 });
+    }
+  }
+  // Dot — dense filled circle
+  for (let i = 0; i < 80; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const dr = Math.random() * s * 0.025;
+    p.push({ x: cx + Math.cos(a) * dr, y: cy + s * 0.2 + Math.sin(a) * dr });
   }
   return p;
 }
@@ -69,41 +84,58 @@ function orbPts(cx: number, cy: number, s: number) {
 }
 
 function headPts(cx: number, cy: number, s: number) {
-  // Three geometric shapes: pyramid (left), sphere (centre), cube (right)
   const p: {x:number;y:number}[] = [];
-  const r = s * 0.12;
-  const offset = s * 0.18;
+  const r = s * 0.1;
+  const spread = s * 0.28;
 
-  // Pyramid (left) — triangle outline
-  const px = cx - offset, py = cy;
-  const triPts: [number,number][] = [[0,-r],[r*0.9,r*0.7],[-r*0.9,r*0.7],[0,-r]];
-  for (let i = 0; i < triPts.length - 1; i++) {
-    for (let t = 0; t <= 1; t += 0.015) {
-      p.push({ x: px + triPts[i][0]+(triPts[i+1][0]-triPts[i][0])*t, y: py + triPts[i][1]+(triPts[i+1][1]-triPts[i][1])*t });
+  // Pyramid (left) — filled triangle
+  const px = cx - spread, py = cy;
+  for (let i = 0; i < 300; i++) {
+    const u = Math.random(), v = Math.random();
+    const su = Math.sqrt(u);
+    // Barycentric coords for triangle fill
+    const x = (1-su)*0 + su*(1-v)*(-r) + su*v*r;
+    const y = (1-su)*(-r*1.3) + su*(1-v)*(r*0.8) + su*v*(r*0.8);
+    p.push({ x: px + x, y: py + y });
+  }
+  // Outline
+  const tri: [number,number][] = [[0,-r*1.3],[r,r*0.8],[-r,r*0.8],[0,-r*1.3]];
+  for (let i = 0; i < 3; i++) {
+    for (let t = 0; t <= 1; t += 0.005) {
+      p.push({ x: px+tri[i][0]+(tri[i+1][0]-tri[i][0])*t, y: py+tri[i][1]+(tri[i+1][1]-tri[i][1])*t });
     }
   }
-  // Cross lines for 3D effect
-  for (let t = 0; t <= 1; t += 0.02) p.push({ x: px + triPts[1][0]*t, y: py + triPts[0][1]+(triPts[1][1]-triPts[0][1])*t });
 
-  // Sphere (centre) — circle with latitude lines
+  // Sphere (centre) — filled circle with shading
   const sx = cx, sy = cy;
-  for (let t = 0; t <= Math.PI*2; t += 0.02) p.push({ x: sx+Math.cos(t)*r, y: sy+Math.sin(t)*r });
-  for (let lat = -0.6; lat <= 0.6; lat += 0.4) {
-    const lr = r * Math.cos(Math.asin(lat));
-    for (let t = 0; t <= Math.PI*2; t += 0.04) p.push({ x: sx+Math.cos(t)*lr, y: sy+lat*r+Math.sin(t)*lr*0.2 });
+  for (let i = 0; i < 400; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const d = Math.sqrt(Math.random()) * r;
+    p.push({ x: sx + Math.cos(a) * d, y: sy + Math.sin(a) * d });
   }
 
-  // Cube (right) — wireframe
-  const qx = cx + offset, qy = cy;
-  const half = r * 0.7;
-  const cubeVerts: [number,number][] = [
-    [-half,-half],[half,-half],[half,half],[-half,half], // front
-    [-half*0.5,-half*0.5-half*0.4],[half*0.5+half,-half*0.5-half*0.4],[half*0.5+half,half*0.5+half*0.6],[-half*0.5,half*0.5+half*0.6],
+  // Cube (right) — filled wireframe
+  const qx = cx + spread, qy = cy;
+  const h = r * 0.85;
+  const d2 = h * 0.45;
+  const faces = [
+    [[-h,-h],[h,-h],[h,h],[-h,h]], // front
+    [[-h+d2,-h-d2],[h+d2,-h-d2],[h+d2,h-d2],[-h+d2,h-d2]], // back
   ];
-  // Front face
+  for (const face of faces) {
+    for (let i = 0; i < 4; i++) {
+      const [x1,y1] = face[i], [x2,y2] = face[(i+1)%4];
+      for (let t = 0; t <= 1; t += 0.004) p.push({ x: qx+x1+(x2-x1)*t, y: qy+y1+(y2-y1)*t });
+    }
+  }
+  // Connecting edges
   for (let i = 0; i < 4; i++) {
-    const [x1,y1] = cubeVerts[i], [x2,y2] = cubeVerts[(i+1)%4];
-    for (let t = 0; t <= 1; t += 0.02) p.push({ x: qx+x1+(x2-x1)*t, y: qy+y1+(y2-y1)*t });
+    for (let t = 0; t <= 1; t += 0.008) p.push({ x: qx+faces[0][i][0]+(faces[1][i][0]-faces[0][i][0])*t, y: qy+faces[0][i][1]+(faces[1][i][1]-faces[0][i][1])*t });
+  }
+  // Fill front face
+  for (let i = 0; i < 200; i++) {
+    const x = (Math.random()-0.5)*2*h, y = (Math.random()-0.5)*2*h;
+    p.push({ x: qx+x, y: qy+y });
   }
 
   return p;
