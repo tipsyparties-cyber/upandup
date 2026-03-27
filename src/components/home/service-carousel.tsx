@@ -244,54 +244,36 @@ export function ServiceCarousel({ filter }: { filter?: "AGENT" | "TOOL" }) {
   }, []);
 
   const sourceCards = filter === "TOOL" ? toolCards : filter === "AGENT" ? allCards : [...allCards, ...toolCards];
-  const cards = [...sourceCards, ...sourceCards];
-
-  function renderRow(cards: typeof allCards, ref: React.RefObject<HTMLDivElement | null>) {
-    return (
-      <div
-        ref={ref}
-        className="flex gap-4 overflow-x-hidden w-full px-12"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {cards.map((card, i) => (
-          <div key={`${card.name}-${i}`} className="shrink-0 w-[240px] h-[300px] md:w-[260px] md:h-[340px]">
-            <div className="w-full h-full rounded-3xl border border-white/15 bg-white/8 backdrop-blur-2xl p-6 md:p-7 flex flex-col justify-between shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)] hover:bg-white/12 transition-colors duration-300">
-              <div>
-                <div className="w-7 h-7 mb-4 flex items-center justify-center">
-                  {cardGlyphs[card.name] || null}
-                </div>
-                <h3 className="font-body text-sm md:text-base text-white font-medium leading-snug">{card.name}</h3>
-              </div>
-              <div>
-                <p className="font-body text-[10px] md:text-[11px] text-white/40 leading-relaxed mb-4">{card.desc}</p>
-                <a href="/services" className="inline-block font-body text-[9px] md:text-[10px] uppercase tracking-wider text-white border border-white/30 rounded-full px-3 py-1.5 hover:bg-white/10 transition-colors duration-300">
-                  Learn more
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <motion.div
-      className="flex-1 flex flex-col justify-center w-full relative gap-3"
+      className="flex-1 flex items-center w-full px-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 1.2, duration: 0.8 }}
+      transition={{ delay: 0.8, duration: 0.8 }}
     >
-      {/* Arrow buttons */}
-      <button onClick={() => scroll(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors text-2xl" aria-label="Scroll left" style={{ transform: "translateY(-50%) rotate(-90deg)" }}>
-        ^
-      </button>
-      <button onClick={() => scroll(1)} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white/40 hover:text-white transition-colors text-2xl" aria-label="Scroll right" style={{ transform: "translateY(-50%) rotate(90deg)" }}>
-        ^
-      </button>
-
-      {/* Cards — single row */}
-      {renderRow(cards, scrollRef)}
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-3 w-full max-w-6xl mx-auto">
+        {sourceCards.map((card, i) => (
+          <motion.div
+            key={card.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 + i * 0.06, duration: 0.5 }}
+          >
+            <div className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-2xl p-4 md:p-5 flex flex-col justify-between h-full min-h-[200px] shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.15)] hover:bg-white/12 transition-colors duration-300">
+              <div>
+                <div className="w-6 h-6 mb-3 flex items-center justify-center">
+                  {cardGlyphs[card.name] || null}
+                </div>
+                <h3 className="font-body text-xs md:text-sm text-white font-medium leading-snug">{card.name}</h3>
+              </div>
+              <div>
+                <p className="font-body text-[9px] md:text-[10px] text-white/40 leading-relaxed mt-3">{card.desc}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 }

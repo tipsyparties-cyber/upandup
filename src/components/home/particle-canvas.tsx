@@ -23,30 +23,37 @@ function clusterPts(cx: number, cy: number, s: number) {
 
 function questionPts(cx: number, cy: number, s: number) {
   const p: {x:number;y:number}[] = [];
-  const r = s * 0.13;
-  // Top curve — thick C shape curving from left over top and down right side
-  for (let pass = 0; pass < 8; pass++) {
-    const thickness = pass * 1.5;
-    for (let t = 0; t <= 1; t += 0.003) {
-      const angle = Math.PI * 0.8 - t * Math.PI * 1.8;
-      const tr = r + (Math.random() - 0.5) * thickness;
-      const x = cx + Math.cos(angle) * tr;
-      const y = cy - s * 0.1 + Math.sin(angle) * tr * 0.9;
+  const scale = s * 0.35;
+  
+  // Top curve of ? — thick arc, many passes for density
+  for (let pass = 0; pass < 15; pass++) {
+    const w = pass * 0.8;
+    for (let t = 0; t <= 1; t += 0.001) {
+      const angle = Math.PI * 0.7 - t * Math.PI * 1.7;
+      const r = scale * 0.45 + (Math.random() - 0.5) * w;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy - scale * 0.25 + Math.sin(angle) * r * 0.85;
       p.push({ x, y });
     }
   }
-  // Stem — thick vertical line
-  for (let pass = 0; pass < 6; pass++) {
-    for (let t = 0; t <= 1; t += 0.005) {
-      p.push({ x: cx + (Math.random() - 0.5) * pass * 1.2, y: cy + s * 0.04 + t * s * 0.08 });
+  
+  // Stem — thick vertical, many passes
+  for (let pass = 0; pass < 12; pass++) {
+    const w = pass * 0.7;
+    for (let t = 0; t <= 1; t += 0.002) {
+      const x = cx + (Math.random() - 0.5) * w;
+      const y = cy + scale * 0.08 + t * scale * 0.22;
+      p.push({ x, y });
     }
   }
+  
   // Dot — dense filled circle
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 200; i++) {
     const a = Math.random() * Math.PI * 2;
-    const dr = Math.random() * s * 0.025;
-    p.push({ x: cx + Math.cos(a) * dr, y: cy + s * 0.2 + Math.sin(a) * dr });
+    const r = Math.sqrt(Math.random()) * scale * 0.06;
+    p.push({ x: cx + Math.cos(a) * r, y: cy + scale * 0.45 + Math.sin(a) * r });
   }
+  
   return p;
 }
 

@@ -7,6 +7,7 @@ import { glyphs } from "@/components/glyphs";
 import { ChaosGlyph } from "@/components/home/chaos-glyph";
 import { HarmonyGlyph } from "@/components/home/harmony-glyph";
 import { ParticleCanvas, type ParticleShape } from "@/components/home/particle-canvas";
+import { ContactForm } from "@/components/contact/contact-form";
 import { ServiceCarousel } from "@/components/home/service-carousel";
 
 function seededRandom(seed: number) {
@@ -403,38 +404,24 @@ const sections = [
   },
   {
     id: "cta",
-    content: (onReady: () => void) => (
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="font-display text-4xl font-light md:text-5xl lg:text-6xl">
-          <FloatingWords text="Ready to see what's possible?" startDelay={0} />
-        </h2>
-        <motion.p
-          className="font-body text-base md:text-xl text-white/70 mt-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          onAnimationComplete={onReady}
-        >
-          Tell us your pain points, your goals, and what takes up too much of your time.
-        </motion.p>
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.8 }}
-        >
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-sm font-medium tracking-wide uppercase glass text-white hover:bg-white/20 transition-all duration-300"
-          >
-            Tell us about your business
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 14V2M8 2L3 7M8 2L13 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-        </motion.div>
+    content: (onReady: () => void) => {
+      setTimeout(() => onReady(), 1000);
+      return (
+      <div className="w-full h-full flex flex-col overflow-y-auto" style={{scrollbarWidth:"none"}}>
+        <div className="max-w-3xl mx-auto w-full px-6 py-12">
+          <h2 className="font-display text-3xl font-light md:text-5xl text-center">
+            Ready to see what&apos;s possible?
+          </h2>
+          <p className="text-white/50 text-center mt-4 font-light text-sm">
+            Tell us a bit about your business, what you&apos;ve built and what you&apos;re looking for.
+          </p>
+          <div className="mt-8">
+            <ContactForm />
+          </div>
+        </div>
       </div>
-    ),
+      );
+    },
   },
 ];
 
