@@ -1,33 +1,30 @@
 import type { Metadata } from "next";
-import { SectionReveal } from "@/components/ui/section-reveal";
 import { ContactForm } from "@/components/contact/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell us about your business. Before we speak, we like to do our homework.",
+  description: "Ready to see what's possible? Tell us about your business.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-20 text-white">
-      <section className="px-6">
-        <div className="mx-auto max-w-3xl">
-          <SectionReveal>
-            <h1 className="font-display text-5xl font-light md:text-6xl lg:text-7xl">
-              Let&apos;s get to know your business
-            </h1>
-            <p className="mt-6 text-white/50 leading-relaxed font-light">
-              Tell us a bit about your business, what you&apos;ve built and what you&apos;re looking for. Before we speak, we like to do our homework.
-            </p>
-          </SectionReveal>
+    <div className="min-h-screen flex items-center text-white px-6 md:px-12 pt-20">
+      <div className="w-full max-w-[1400px] mx-auto grid md:grid-cols-[1fr_1fr] gap-12 md:gap-20 items-center">
 
-          <SectionReveal delay={0.1}>
-            <div className="mt-12">
-              <ContactForm />
-            </div>
-          </SectionReveal>
+        {/* Left — Heading */}
+        <div>
+          <h1 className="font-body text-5xl md:text-6xl lg:text-[5.5rem] font-light leading-[1.1]">
+            Ready<br />to see<br />what&apos;s<br />possible?
+          </h1>
+          <p className="mt-8 font-display text-2xl md:text-3xl font-light text-white/50">
+            start here ^
+          </p>
         </div>
-      </section>
+
+        {/* Right — Form */}
+        <ContactForm />
+
+      </div>
     </div>
   );
 }

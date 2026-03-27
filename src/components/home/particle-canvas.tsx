@@ -90,10 +90,18 @@ function orbPts(cx: number, cy: number, s: number) {
   return p;
 }
 
-function headPts(cx: number, cy: number, s: number) {
+function headPts(cx: number, cy: number, s: number, angle = 0) {
   const p: {x:number;y:number}[] = [];
-  const r = s * 0.1;
-  const spread = s * 0.28;
+  const r = s * 0.11;
+  const spread = s * 0.24;
+  const cos = Math.cos(angle), sin = Math.sin(angle);
+  // 3D rotation helper — rotate around Y axis then project
+  const proj = (x3: number, y3: number, z3: number, ox: number, oy: number) => {
+    const rx = x3 * cos - z3 * sin;
+    const rz = x3 * sin + z3 * cos;
+    const scale = 1 / (1 + rz * 0.003);
+    return { x: ox + rx * scale, y: oy + y3 * scale };
+  };
 
   // Pyramid (left) — filled triangle
   const px = cx - spread, py = cy;
@@ -224,7 +232,7 @@ export function ParticleCanvas({ shape }: { shape: ParticleShape }) {
     }
 
     let time = 0;
-    const getConnDist = () => shapeRef.current === "brain" ? 70 : 50;
+    const getConnDist = () => shapeRef.current === "brain" ? 70 : 45;
 
     function draw() {
       if (!ctx) return;
@@ -244,7 +252,7 @@ export function ParticleCanvas({ shape }: { shape: ParticleShape }) {
 
       for (let i = 0; i < particles.length; i++) {
         const cd = getConnDist();
-        const maxConn = shapeRef.current === "brain" ? 2 : 0;
+        const maxConn = shapeRef.current === "brain" ? 4 : 3;
         const lineAlpha = shapeRef.current === "brain" ? 0.2 : 0.15;
         let c = 0;
         for (let j = i + 1; j < particles.length && c < maxConn; j++) {

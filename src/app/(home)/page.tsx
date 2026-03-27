@@ -60,9 +60,9 @@ const sections = [
               <span className="inline-block" style={{ width: "5em" }}></span>
             </span>
             <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
               onAnimationComplete={onReady}
               className="absolute top-0"
               style={{ left: "calc(100% - 5em)" }}
@@ -265,20 +265,11 @@ const sections = [
     particleShape: "question" as ParticleShape,
     content: (onReady: () => void) => (
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-center">
-          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
-            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.2, ease: [0.15, 0.8, 0.3, 1] }}>Why</motion.div>
-          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
-            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.4, ease: [0.15, 0.8, 0.3, 1] }}>work</motion.div>
-          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
-            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.6, ease: [0.15, 0.8, 0.3, 1] }}>with</motion.div>
-          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
-            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.8, ease: [0.15, 0.8, 0.3, 1] }} onAnimationComplete={onReady}>us</motion.div>
-        </div>
+        <motion.h2 className="font-display text-4xl md:text-6xl lg:text-[5rem] font-light text-white whitespace-nowrap"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.3 }} onAnimationComplete={onReady}>
+          Why work with us
+        </motion.h2>
       </div>
     ),
   },
@@ -287,7 +278,7 @@ const sections = [
     particleShape: "brain" as ParticleShape,
     content: (onReady: () => void) => (
       <div className="flex flex-col items-center justify-center text-center px-8">
-        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80 whitespace-nowrap"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
         <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
           initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Knowledge</motion.h2>
@@ -304,7 +295,7 @@ const sections = [
     particleShape: "orb" as ParticleShape,
     content: (onReady: () => void) => (
       <div className="flex flex-col items-center justify-center text-center px-8">
-        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80 whitespace-nowrap"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
         <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
           initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Continuity</motion.h2>
@@ -321,7 +312,7 @@ const sections = [
     particleShape: "head" as ParticleShape,
     content: (onReady: () => void) => (
       <div className="flex flex-col items-center justify-center text-center px-8">
-        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80 whitespace-nowrap"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
         <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
           initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Bespoke</motion.h2>
@@ -338,7 +329,7 @@ const sections = [
     particleShape: "infinity" as ParticleShape,
     content: (onReady: () => void) => (
       <div className="flex flex-col items-center justify-center text-center px-8">
-        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80 whitespace-nowrap"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
         <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
           initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Evolution</motion.h2>
@@ -424,6 +415,50 @@ const sections = [
     },
   },
 ];
+
+import Link from "next/link";
+
+const menuLinks = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];
+
+function HomeMenu() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <div className="fixed top-4 right-6 z-[100]"
+      onMouseEnter={() => setMenuOpen(true)}
+      onMouseLeave={() => setMenuOpen(false)}
+    >
+      <button onClick={() => setMenuOpen(!menuOpen)} className="flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span className="block h-px w-6 bg-white" />
+        <span className="block h-px w-6 bg-white" />
+      </button>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div className="absolute right-0 top-full mt-2"
+            initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2 }}>
+            <nav className="flex flex-col items-end gap-1 py-2">
+              {menuLinks.map((link, i) => (
+                <motion.div key={link.href} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.04 }}>
+                  <Link href={link.href} onClick={() => setMenuOpen(false)}
+                    className="block py-1 font-body text-sm font-light text-white/60 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState(-1);
@@ -528,6 +563,9 @@ export default function Home() {
         <span className="font-display text-[1.15em]">+up</span>
         <span className="text-white text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
       </motion.div>
+
+      {/* Hamburger menu — top right */}
+      <HomeMenu />
 
       {/* Particle Canvas — persistent layer, shape changes with section */}
       {(() => {
