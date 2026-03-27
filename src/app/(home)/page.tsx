@@ -265,16 +265,16 @@ const sections = [
     content: (onReady: () => void) => (
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="text-center">
-          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
             initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.2, ease: [0.15, 0.8, 0.3, 1] }}>Why</motion.div>
-          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
             initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.4, ease: [0.15, 0.8, 0.3, 1] }}>work</motion.div>
-          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
             initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.6, ease: [0.15, 0.8, 0.3, 1] }}>with</motion.div>
-          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+          <motion.div className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
             initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.8, ease: [0.15, 0.8, 0.3, 1] }} onAnimationComplete={onReady}>us</motion.div>
         </div>

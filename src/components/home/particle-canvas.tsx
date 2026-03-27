@@ -151,7 +151,7 @@ export function ParticleCanvas({ shape }: { shape: ParticleShape }) {
     const pts = getPts(shape, cx, cy, size);
     for (const p of particlesRef.current) {
       const pt = pts[Math.floor(Math.random() * pts.length)];
-      const sc = 2 + Math.random() * 8, sa = Math.random() * Math.PI * 2;
+      const sc = Math.random() * 3, sa = Math.random() * Math.PI * 2;
       p.targetX = pt.x + Math.cos(sa) * sc;
       p.targetY = pt.y + Math.sin(sa) * sc;
     }
@@ -170,15 +170,15 @@ export function ParticleCanvas({ shape }: { shape: ParticleShape }) {
     const pts = getPts("cluster", cx, cy, size);
 
     if (particlesRef.current.length === 0) {
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 2000; i++) {
         const pt = pts[Math.floor(Math.random() * pts.length)];
         const sc = 2 + Math.random() * 8, sa = Math.random() * Math.PI * 2;
         particlesRef.current.push({
           x: pt.x + Math.cos(sa) * sc, y: pt.y + Math.sin(sa) * sc,
           targetX: pt.x, targetY: pt.y,
-          angle: Math.random() * Math.PI * 2, speed: 0.002 + Math.random() * 0.004,
-          radius: Math.random() < 0.3 ? 2 + Math.random() * 3 : 0.5 + Math.random() * 1.5,
-          orbitRadius: 1.5 + Math.random() * 5, opacity: 0.3 + Math.random() * 0.5,
+          angle: Math.random() * Math.PI * 2, speed: 0.0005 + Math.random() * 0.002,
+          radius: 0.2 + Math.random() * 0.6,
+          orbitRadius: 0.5 + Math.random() * 1.5, opacity: 0.3 + Math.random() * 0.5,
           phase: Math.random() * Math.PI * 2,
         });
       }
@@ -205,7 +205,7 @@ export function ParticleCanvas({ shape }: { shape: ParticleShape }) {
 
       for (let i = 0; i < particles.length; i++) {
         const cd = getConnDist();
-        const maxConn = shapeRef.current === "brain" ? 5 : 3;
+        const maxConn = shapeRef.current === "brain" ? 2 : 0;
         const lineAlpha = shapeRef.current === "brain" ? 0.2 : 0.15;
         let c = 0;
         for (let j = i + 1; j < particles.length && c < maxConn; j++) {
