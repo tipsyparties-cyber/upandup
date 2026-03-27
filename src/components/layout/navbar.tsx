@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { MobileMenu } from "./mobile-menu";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,61 +14,63 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <>
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass shadow-sm" : "bg-transparent"
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-          <Link href="/" className="text-2xl tracking-tight text-white invisible" id="navbar-logo">
-            <span className="font-body font-light">up</span>
-            <span className="font-display text-[1.15em]">+up</span>
-            <span className="text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
-          </Link>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
+        <Link href="/" className="text-2xl tracking-tight text-white">
+          <span className="font-body font-light">up</span>
+          <span className="font-display text-[1.15em]">+up</span>
+          <span className="text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
+        </Link>
 
-          <ul className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-sans text-white/70 transition-colors duration-300 hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
+        <div
+          className="relative"
+          onMouseEnter={() => setMenuOpen(true)}
+          onMouseLeave={() => setMenuOpen(false)}
+        >
           <button
-            onClick={() => setMenuOpen(true)}
-            className="flex flex-col gap-1.5 md:hidden"
-            aria-label="Open menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex flex-col gap-1.5 p-2"
+            aria-label="Menu"
           >
             <span className="block h-px w-6 bg-white" />
             <span className="block h-px w-6 bg-white" />
           </button>
-        </nav>
-      </motion.header>
 
-      <MobileMenu
-        isOpen={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        links={navLinks}
-      />
-    </>
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                className="absolute right-0 top-full mt-2"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <nav className="flex flex-col items-end gap-1 py-2">
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: i * 0.04 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="block py-1 font-body text-sm font-light text-white/60 hover:text-white transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </nav>
+    </header>
   );
 }

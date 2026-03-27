@@ -6,7 +6,7 @@ import { RotatingWord } from "@/components/home/rotating-word";
 import { glyphs } from "@/components/glyphs";
 import { ChaosGlyph } from "@/components/home/chaos-glyph";
 import { HarmonyGlyph } from "@/components/home/harmony-glyph";
-import { WhyUsSection } from "@/components/home/why-us-section";
+import { ParticleCanvas, type ParticleShape } from "@/components/home/particle-canvas";
 import { ServiceCarousel } from "@/components/home/service-carousel";
 
 function seededRandom(seed: number) {
@@ -107,7 +107,7 @@ const sections = [
           <FloatingWords text="What we achieve with ai & automation" startDelay={0} />
         </h2>
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-4 mt-8"
+          className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
@@ -116,14 +116,14 @@ const sections = [
           {glyphs.map(({ Glyph, title, description }, i) => (
             <motion.div
               key={title}
-              className="text-center rounded-2xl border border-white/15 bg-white/8 backdrop-blur-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)]"
+              className="text-center rounded-2xl border border-white/15 bg-white/8 backdrop-blur-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + i * 0.1, duration: 0.5 }}
             >
-              <Glyph className="mx-auto mb-2 h-8 w-8 text-white/50" />
-              <h3 className="font-body text-[11px] md:text-xs font-medium text-white leading-tight">{title}</h3>
-              <p className="font-body text-[9px] md:text-[10px] text-white/40 mt-1 leading-snug">{description}</p>
+              <Glyph className="mx-auto mb-3 h-10 w-10 text-white/50" />
+              <h3 className="font-body text-sm md:text-base font-medium text-white leading-tight">{title}</h3>
+              <p className="font-body text-[11px] md:text-xs text-white/40 mt-2 leading-snug">{description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -228,57 +228,123 @@ const sections = [
     ),
   },
   {
-    id: "services",
+    id: "ai-team",
     content: (onReady: () => void) => {
-      // This section handles its own scroll for horizontal carousel
-      // onReady is called immediately so the parent doesn't block scrolling
       setTimeout(() => onReady(), 2000);
       return (
       <div className="w-full h-full flex flex-col">
         <div className="text-center pt-8">
           <h2 className="font-display text-3xl font-light md:text-5xl lg:text-[4.5rem]">
-            <FloatingWords text="What can we do for you?" startDelay={0} />
+            <FloatingWords text="Your AI Team" startDelay={0} />
           </h2>
-          <motion.p
-            className="font-body text-xs uppercase tracking-[0.2em] text-white/40 mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-          >
-            Your AI Team &amp; Automation Tools
-          </motion.p>
         </div>
-        <ServiceCarousel />
+        <ServiceCarousel filter="AGENT" />
       </div>
       );
     },
   },
   {
-    id: "why-us",
+    id: "automation-tools",
+    content: (onReady: () => void) => {
+      setTimeout(() => onReady(), 2000);
+      return (
+      <div className="w-full h-full flex flex-col">
+        <div className="text-center pt-8">
+          <h2 className="font-display text-3xl font-light md:text-5xl lg:text-[4.5rem]">
+            <FloatingWords text="Your Automation Tools" startDelay={0} />
+          </h2>
+        </div>
+        <ServiceCarousel filter="TOOL" />
+      </div>
+      );
+    },
+  },
+  {
+    id: "why-us-intro",
+    particleShape: "question" as ParticleShape,
     content: (onReady: () => void) => (
-      <WhyUsSection onReady={onReady} />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="text-center">
+          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.2, ease: [0.15, 0.8, 0.3, 1] }}>Why</motion.div>
+          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.4, ease: [0.15, 0.8, 0.3, 1] }}>work</motion.div>
+          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.6, ease: [0.15, 0.8, 0.3, 1] }}>with</motion.div>
+          <motion.div className="font-body text-5xl md:text-7xl lg:text-[6rem] font-light text-white"
+            initial={{ y: "50vh", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.8, ease: [0.15, 0.8, 0.3, 1] }} onAnimationComplete={onReady}>us</motion.div>
+        </div>
+      </div>
     ),
   },
   {
-    id: "knowledge",
+    id: "why-us-knowledge",
+    particleShape: "brain" as ParticleShape,
     content: (onReady: () => void) => (
-      <div className="w-full h-full flex flex-col items-center justify-center relative">
-        <motion.h2
-          className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light text-white text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.9 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        >
-          Knowledge
-        </motion.h2>
-        <motion.p
-          className="font-body text-xs md:text-sm lg:text-base text-white/60 leading-relaxed max-w-2xl mx-auto text-center mt-8 px-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-          onAnimationComplete={onReady}
-        >
+      <div className="flex flex-col items-center justify-center text-center px-8">
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
+        <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
+          initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Knowledge</motion.h2>
+        <motion.p className="font-body text-xs md:text-sm lg:text-base text-white/60 leading-relaxed max-w-2xl mt-8"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }} onAnimationComplete={onReady}>
           We&apos;re entrepreneurs &times; coders. A decade of founding, scaling and automating real businesses has given us something no agency can replicate &mdash; our lived experience of every problem we solve, the knowledge to foresee them before they happen + the technical skill to solve them.
+        </motion.p>
+      </div>
+    ),
+  },
+  {
+    id: "why-us-continuity",
+    particleShape: "orb" as ParticleShape,
+    content: (onReady: () => void) => (
+      <div className="flex flex-col items-center justify-center text-center px-8">
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
+        <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
+          initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Continuity</motion.h2>
+        <motion.p className="font-body text-xs md:text-sm lg:text-base text-white/60 leading-relaxed max-w-2xl mt-8"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }} onAnimationComplete={onReady}>
+          One connected system with one voice. No stack of disconnected apps talking different languages. Everything speaks to everything, instantly, one entity, unified.
+        </motion.p>
+      </div>
+    ),
+  },
+  {
+    id: "why-us-bespoke",
+    particleShape: "head" as ParticleShape,
+    content: (onReady: () => void) => (
+      <div className="flex flex-col items-center justify-center text-center px-8">
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
+        <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
+          initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Bespoke</motion.h2>
+        <motion.p className="font-body text-xs md:text-sm lg:text-base text-white/60 leading-relaxed max-w-2xl mt-8"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }} onAnimationComplete={onReady}>
+          No two businesses are built the same way. Your systems are designed around how you work now and where you want to go. You don&apos;t adapt to the tech, the tech adapts to you.
+        </motion.p>
+      </div>
+    ),
+  },
+  {
+    id: "why-us-evolution",
+    particleShape: "infinity" as ParticleShape,
+    content: (onReady: () => void) => (
+      <div className="flex flex-col items-center justify-center text-center px-8">
+        <motion.h3 className="absolute top-16 left-8 font-body text-lg md:text-2xl font-light text-white/80"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>Why work with us</motion.h3>
+        <motion.h2 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-light"
+          initial={{ opacity: 0 }} animate={{ opacity: 0.9 }} transition={{ duration: 1.2 }}>Evolution</motion.h2>
+        <motion.p className="font-body text-xs md:text-sm lg:text-base text-white/60 leading-relaxed max-w-2xl mt-8"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }} onAnimationComplete={onReady}>
+          We don&apos;t build and disappear. Start with what you need, add what you want when you&apos;re ready. Your automation grows as your business grows &mdash; no big bang, no rip and replace, just steady progress on your terms. Growing with you.
         </motion.p>
       </div>
     ),
@@ -288,42 +354,47 @@ const sections = [
     content: (onReady: () => void) => (
       <div className="max-w-5xl mx-auto w-full px-8">
         <h2 className="font-display text-3xl font-light md:text-5xl lg:text-[4.5rem] text-center mb-16">
-          <FloatingWords text="How does it work?" startDelay={0} />
+          <FloatingWords text="How we work together" startDelay={0} />
         </h2>
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-5 gap-5">
           {[
             {
-              num: "01",
-              title: "Tell us everything",
-              desc: "Your pain points. Your repeated tasks. Your chaos. Your leaks. We\u2019ll automate them, simplify them, and plug them.",
+              glyph: (<svg viewBox="0 0 40 40" className="w-16 h-16 text-white/30"><circle cx="20" cy="20" r="2" fill="currentColor" /></svg>),
+              title: "Let\u2019s see how we can help",
+              desc: "Tell us about your business \u2014 your pain points, where it gets complicated, where time or money gets lost and where you want to take things.",
             },
             {
-              num: "02",
-              title: "We come back with solutions",
-              desc: "Tailored solutions and transparent pricing. No fluff, no upselling \u2014 just what your business actually needs.",
+              glyph: (<svg viewBox="0 0 40 40" className="w-16 h-16 text-white/30"><circle cx="20" cy="20" r="2" fill="currentColor" /><circle cx="20" cy="20" r="7" stroke="currentColor" strokeWidth="1" fill="none" /></svg>),
+              title: "We plan",
+              desc: "A considered, tailored blueprint built around your business. The right solutions, in the right order, at the right investment. Honest, transparent and designed specifically for where you are and where you want to go.",
             },
             {
-              num: "03",
-              title: "Pick what fits",
-              desc: "Choose your solutions based on priority and budget. We can always add more later \u2014 start where it matters most.",
+              glyph: (<svg viewBox="0 0 40 40" className="w-16 h-16 text-white/30"><circle cx="20" cy="20" r="2" fill="currentColor" /><circle cx="20" cy="20" r="7" stroke="currentColor" strokeWidth="1" fill="none" /><circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="0.8" fill="none" /></svg>),
+              title: "You choose",
+              desc: "No pressure to do everything at once. Start with what matters most, what will have the biggest immediate impact, or simply what fits right now. Your budget. Your priorities. Your choice.",
             },
             {
-              num: "04",
-              title: "We build, you breathe",
-              desc: "We build and integrate everything. You sit back and relax \u2014 or spend your spare time on growth and development.",
+              glyph: (<svg viewBox="0 0 40 40" className="w-16 h-16 text-white/30"><circle cx="20" cy="20" r="2" fill="currentColor" /><circle cx="20" cy="20" r="7" stroke="currentColor" strokeWidth="1" fill="none" /><circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="0.8" fill="none" /><circle cx="20" cy="20" r="17" stroke="currentColor" strokeWidth="0.6" fill="none" /></svg>),
+              title: "We build",
+              desc: "We handle everything \u2014 design, build, integrate, test and launch. You stay focused on your business while we do the work. No disruption, no confusion, no technical headaches.",
             },
-          ].map(({ num, title, desc }, i) => (
+            {
+              glyph: (<svg viewBox="0 0 40 40" className="w-16 h-16 text-white/30"><circle cx="20" cy="20" r="2" fill="currentColor" /><circle cx="20" cy="20" r="7" stroke="currentColor" strokeWidth="1" fill="none" /><circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="0.8" fill="none" /><circle cx="20" cy="20" r="17" stroke="currentColor" strokeWidth="0.6" fill="none" /><circle cx="20" cy="20" r="19.5" stroke="currentColor" strokeWidth="0.4" fill="none" /></svg>),
+              title: "You breathe, grow and evolve",
+              desc: "And so do we. As your needs change and new opportunities emerge we are still here. Add what you need, adapt what you have, build what comes next. At your pace, on your terms.",
+            },
+          ].map(({ glyph, title, desc }, i) => (
             <motion.div
-              key={num}
-              className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)]"
+              key={title}
+              className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)]"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + i * 0.2, duration: 0.7, ease: [0.15, 0.8, 0.3, 1] }}
-              {...(i === 3 ? { onAnimationComplete: onReady } : {})}
+              {...(i === 4 ? { onAnimationComplete: onReady } : {})}
             >
-              <span className="font-body text-3xl md:text-4xl font-light text-white/20">{num}</span>
-              <h3 className="font-body text-sm md:text-base font-medium text-white mt-4 uppercase tracking-wider">{title}</h3>
-              <p className="font-body text-[10px] md:text-xs text-white/50 mt-3 leading-relaxed">{desc}</p>
+              <div className="mb-4">{glyph}</div>
+              <h3 className="font-body text-xs md:text-sm font-medium text-white uppercase tracking-wider">{title}</h3>
+              <p className="font-body text-[9px] md:text-[10px] text-white/50 mt-3 leading-relaxed font-light">{desc}</p>
             </motion.div>
           ))}
         </div>
@@ -419,12 +490,24 @@ export default function Home() {
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    // Mouse at bottom edge triggers scroll
+    const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastNav < 1500) return;
+      if (e.clientY > window.innerHeight - 40) {
+        lastNav = now;
+        navigate(1);
+      }
+    };
+
     window.addEventListener("keydown", handleKey);
+    window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("keydown", handleKey);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [navigate]);
 
@@ -459,6 +542,17 @@ export default function Home() {
         <span className="text-white text-[0.7em] leading-none font-body -ml-[0.15em] relative -top-[0.35em]">^</span>
       </motion.div>
 
+      {/* Particle Canvas — persistent layer, shape changes with section */}
+      {(() => {
+        const sec = currentSection >= 0 ? sections[currentSection] : null;
+        const shape = (sec && 'particleShape' in sec ? sec.particleShape : "none") as ParticleShape;
+        return shape !== "none" ? (
+          <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+            <ParticleCanvas shape={shape} />
+          </div>
+        ) : null;
+      })()}
+
       {/* Sections */}
       <AnimatePresence mode="wait">
         {currentSection >= 0 && (
@@ -490,17 +584,18 @@ export default function Home() {
       )}
 
       {/* Scroll hint */}
-      {currentSection === 0 && (
-        <motion.div
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+      {currentSection >= 0 && currentSection < sections.length - 1 && (
+        <motion.button
+          key={`arrow-${currentSection}`}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 text-white/40 hover:text-white/80 transition-colors cursor-none"
+          onClick={() => navigate(1)}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 8, 0] }}
-          transition={{ opacity: { delay: 5, duration: 0.6 }, y: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+          transition={{ opacity: { duration: 0.4 }, y: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+          aria-label="Scroll down"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white/50">
-            <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
+          <span className="text-5xl font-light">^</span>
+        </motion.button>
       )}
     </div>
   );

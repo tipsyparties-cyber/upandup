@@ -13,15 +13,7 @@ interface ButtonProps {
 }
 
 const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path
-      d="M8 14V2M8 2L3 7M8 2L13 7"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <span className="text-xs leading-none">^</span>
 );
 
 export function Button({

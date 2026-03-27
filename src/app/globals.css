@@ -22,12 +22,18 @@
 
 html {
   scroll-behavior: smooth;
+  cursor: none;
+}
+
+a, button, [role="button"] {
+  cursor: none;
 }
 
 body {
   background-color: var(--color-cream);
-  color: var(--color-warm-grey);
+  color: white;
   font-family: var(--font-body);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
@@ -55,7 +61,7 @@ body {
   background: rgba(215, 110, 85, 0.75);
   top: 55%;
   left: -15%;
-  animation: drift-1 20s ease-in-out infinite;
+  animation: drift-1 12s ease-in-out infinite;
 }
 
 .blob-2 {
@@ -64,7 +70,7 @@ body {
   background: rgba(140, 160, 200, 0.65);
   top: -15%;
   right: -10%;
-  animation: drift-2 25s ease-in-out infinite;
+  animation: drift-2 15s ease-in-out infinite;
 }
 
 .blob-3 {
@@ -73,7 +79,7 @@ body {
   background: rgba(230, 210, 190, 0.6);
   top: 25%;
   left: 25%;
-  animation: drift-3 22s ease-in-out infinite;
+  animation: drift-3 13s ease-in-out infinite;
 }
 
 .blob-4 {
@@ -82,7 +88,7 @@ body {
   background: rgba(200, 160, 130, 0.5);
   bottom: 5%;
   right: 15%;
-  animation: drift-4 28s ease-in-out infinite;
+  animation: drift-4 16s ease-in-out infinite;
 }
 
 .blob-5 {
@@ -91,45 +97,45 @@ body {
   background: rgba(130, 155, 200, 0.5);
   top: 45%;
   left: 5%;
-  animation: drift-5 24s ease-in-out infinite;
+  animation: drift-5 14s ease-in-out infinite;
 }
 
 @keyframes drift-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(15vw, -10vh) scale(1.1); }
-  50% { transform: translate(5vw, -20vh) scale(0.95); }
-  75% { transform: translate(-10vw, -5vh) scale(1.05); }
+  25% { transform: translate(30vw, -25vh) scale(1.15); }
+  50% { transform: translate(10vw, -40vh) scale(0.9); }
+  75% { transform: translate(-20vw, -15vh) scale(1.1); }
 }
 
 @keyframes drift-2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-20vw, 15vh) scale(1.05); }
-  50% { transform: translate(-10vw, 25vh) scale(1.1); }
-  75% { transform: translate(5vw, 10vh) scale(0.95); }
+  25% { transform: translate(-35vw, 30vh) scale(1.1); }
+  50% { transform: translate(-15vw, 45vh) scale(1.15); }
+  75% { transform: translate(15vw, 20vh) scale(0.9); }
 }
 
 @keyframes drift-3 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(15vw, 10vh) scale(1.15); }
-  66% { transform: translate(-10vw, -15vh) scale(0.9); }
+  33% { transform: translate(30vw, 20vh) scale(1.2); }
+  66% { transform: translate(-25vw, -30vh) scale(0.85); }
 }
 
 @keyframes drift-4 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-15vw, -10vh) scale(1.1); }
-  50% { transform: translate(10vw, -20vh) scale(0.95); }
-  75% { transform: translate(5vw, 5vh) scale(1.05); }
+  25% { transform: translate(-30vw, -20vh) scale(1.15); }
+  50% { transform: translate(20vw, -35vh) scale(0.9); }
+  75% { transform: translate(10vw, 10vh) scale(1.1); }
 }
 
 @keyframes drift-5 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(20vw, -15vh) scale(1.1); }
-  66% { transform: translate(-5vw, 10vh) scale(0.95); }
+  33% { transform: translate(35vw, -25vh) scale(1.15); }
+  66% { transform: translate(-15vw, 20vh) scale(0.9); }
 }
 
 ::selection {
   background-color: oklch(from var(--color-accent) l c h / 0.2);
-  color: var(--color-warm-grey);
+  color: white;
 }
 
 /* Glassmorphism utility */
@@ -204,7 +210,7 @@ body {
   font-weight: 300;
   margin-top: 4rem;
   margin-bottom: 1.5rem;
-  color: var(--color-warm-grey);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @media (min-width: 768px) {
@@ -219,7 +225,7 @@ body {
   font-weight: 300;
   margin-top: 3rem;
   margin-bottom: 1rem;
-  color: var(--color-warm-grey);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .prose-upup p {
@@ -227,7 +233,7 @@ body {
 }
 
 .prose-upup strong {
-  color: var(--color-warm-grey);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 500;
 }
 
@@ -238,7 +244,7 @@ body {
 }
 
 .prose-upup em {
-  color: var(--color-mid-grey);
+  color: rgba(255, 255, 255, 0.5);
   font-style: italic;
 }
 

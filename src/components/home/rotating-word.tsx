@@ -20,10 +20,10 @@ export function RotatingWord() {
       <motion.span
         key={words[index]}
         className="text-white"
-        initial={{ y: "0.5em", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "-0.5em", opacity: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
         style={{ display: "inline-block" }}
       >
         {words[index]}

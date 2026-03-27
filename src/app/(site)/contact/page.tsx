@@ -13,9 +13,9 @@ export default function ContactPage() {
       <section className="px-6">
         <div className="mx-auto max-w-2xl">
           <SectionReveal>
-            <p className="font-sans text-xs font-medium uppercase tracking-widest text-accent">Get started</p>
+            <p className="font-sans text-xs font-medium uppercase tracking-widest text-white/70">Get started</p>
             <h1 className="mt-4 font-display text-5xl font-light md:text-6xl">Let&apos;s talk</h1>
-            <p className="mt-6 text-mid-grey leading-relaxed">
+            <p className="mt-6 text-white/50 leading-relaxed">
               Tell us about your business, your biggest pain points, and where you want to be. We&apos;ll come back with honest advice on what&apos;s possible — and what isn&apos;t.
             </p>
           </SectionReveal>
@@ -26,9 +26,9 @@ export default function ContactPage() {
 
           <SectionReveal delay={0.2}>
             <div className="mt-16 text-center">
-              <p className="text-sm text-mid-grey">
+              <p className="text-sm text-white/50">
                 Prefer to talk?{" "}
-                <a href="https://cal.com/upandup" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover font-medium">
+                <a href="https://cal.com/upandup" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white/70-hover font-medium">
                   Book a call directly &rarr;
                 </a>
               </p>

@@ -3,6 +3,7 @@ import { serif, sans } from "@/lib/fonts";
 import { GsapProvider } from "@/lib/gsap-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({
         <GsapProvider>
           {children}
         </GsapProvider>
+        <CustomCursor />
         <Analytics />
         <SpeedInsights />
       </body>
